@@ -1,0 +1,139 @@
+.admin-layout {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+}
+
+.admin-form {
+    position: sticky;
+    top: 100px;
+    padding: var(--space-xl);
+}
+
+.admin-form h2 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-lg);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+}
+
+.form-actions {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.form-actions .btn {
+    flex: 1;
+}
+
+.admin-list h2 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-lg);
+}
+
+.products-table,
+.orders-table {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.product-row,
+.order-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+}
+
+.product-row:hover,
+.order-row:hover {
+    transform: none;
+}
+
+.product-details,
+.order-details {
+    flex: 1;
+}
+
+.product-details h3,
+.order-details h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-xs);
+}
+
+.product-meta {
+    display: flex;
+    gap: var(--space-lg);
+    margin-top: var(--space-sm);
+}
+
+.meta-item {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.product-actions,
+.order-actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-shrink: 0;
+}
+
+.order-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+}
+
+.order-meta {
+    font-size: var(--font-size-sm);
+}
+
+.order-meta p {
+    margin-bottom: var(--space-xs);
+    color: var(--color-text-secondary);
+}
+
+.order-meta strong {
+    color: var(--color-text-primary);
+}
+
+.order-actions {
+    flex-direction: column;
+    min-width: 200px;
+}
+
+.order-actions .form-label {
+    margin-bottom: var(--space-xs);
+    font-size: var(--font-size-sm);
+}
+
+@media (max-width: 1024px) {
+    .admin-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-form {
+        position: static;
+    }
+
+    .product-row,
+    .order-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .product-actions,
+    .order-actions {
+        width: 100%;
+    }
+}
