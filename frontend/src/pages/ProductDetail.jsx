@@ -78,65 +78,83 @@ export default function ProductDetail() {
                     ← Back to Products
                 </button>
 
-                <div className="product-detail-layout">
-                    <div className="product-detail-image card">
-                        <div className="product-image-large">
-                            <span className="product-icon-large"></span>
-                        </div>
-                        {product.stock < 10 && product.stock > 0 && (
-                            <span className="badge badge-warning stock-badge">Only {product.stock} left!</span>
-                        )}
-                        {product.stock === 0 && (
-                            <span className="badge badge-error stock-badge">Out of Stock</span>
+                <div className="product-detail-layout" style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 1fr) 1.5fr minmax(200px, 1fr)', gap: '2rem', alignItems: 'start' }}>
+                    <div className="product-detail-image" style={{ background: 'white', padding: '1rem', border: '1px solid #ddd' }}>
+                        {product.imageUrl ? (
+                            <img 
+                                src={product.imageUrl} 
+                                alt={product.name} 
+                                style={{ width: '100%', height: 'auto', maxHeight: '500px', objectFit: 'contain' }}
+                            />
+                        ) : (
+                            <div className="product-image-placeholder-large" style={{ backgroundColor: '#f3f3f3', aspectRatio: '1/1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <span style={{ fontSize: '10rem' }}>📦</span>
+                            </div>
                         )}
                     </div>
 
-                    <div className="product-detail-info card">
-                        <h1 className="product-detail-name">{product.name}</h1>
+                    <div className="product-detail-info">
+                        <h1 className="product-detail-name" style={{ fontSize: '1.75rem', borderBottom: '1px solid #ddd', paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>{product.name}</h1>
+                        
+                        <div className="product-rating" style={{ color: '#ffa41c', marginBottom: '0.5rem' }}>
+                            ★★★★☆ <span style={{ color: '#007185', fontSize: '0.9rem' }}>42 ratings | Search this page</span>
+                        </div>
 
-                        <div className="product-detail-price">
-                            <span className="price-label">Price</span>
-                            <span className="price-value">₹{product.price}</span>
+                        <div className="product-detail-price" style={{ borderBottom: '1px solid #ddd', paddingBottom: '1rem', marginBottom: '1rem' }}>
+                            <span className="price-label" style={{ fontSize: '0.9rem', color: '#565959' }}>Price: </span>
+                            <span className="price-value" style={{ color: '#B12704', fontSize: '1.75rem', fontWeight: '500' }}>₹{product.price}</span>
+                            <span style={{ fontSize: '0.96rem', color: '#565959', marginLeft: '0.5rem' }}>Fullfilled by AmazeStore</span>
                         </div>
 
                         <div className="product-detail-description">
-                            <h3>Description</h3>
-                            <p>{product.description || 'No description available.'}</p>
+                            <h3 style={{ fontSize: '1rem' }}>About this item</h3>
+                            <p style={{ fontSize: '0.9rem', lineHeight: '1.4' }}>{product.description || 'No description available.'}</p>
+                        </div>
+                    </div>
+
+                    <div className="product-detail-checkout card" style={{ padding: '1rem', border: '1px solid #ddd' }}>
+                        <div className="price-tag" style={{ color: '#B12704', fontSize: '1.5rem', marginBottom: '0.5rem' }}>₹{product.price}</div>
+                        <div className="delivery-info" style={{ fontSize: '0.9rem', marginBottom: '1rem' }}>
+                            <span style={{ color: '#007185' }}>FREE delivery</span> Tomorrow. Order within 10 hrs 15 mins.
                         </div>
 
-                        <div className="product-detail-stock">
-                            <h3>Availability</h3>
-                            <p className={product.stock > 0 ? 'text-success' : 'text-error'}>
-                                {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
+                        <div className="product-detail-stock" style={{ marginBottom: '1rem' }}>
+                            <p className={product.stock > 0 ? 'text-success' : 'text-error'} style={{ fontWeight: '500', fontSize: '1.1rem' }}>
+                                {product.stock > 0 ? 'In Stock' : 'Currently unavailable'}
                             </p>
+                            {product.stock < 10 && product.stock > 0 && (
+                                <p style={{ color: '#B12704', fontSize: '0.9rem' }}>Only {product.stock} left in stock - order soon.</p>
+                            )}
                         </div>
 
                         {product.stock > 0 && (
                             <div className="product-detail-actions">
-                                <div className="quantity-selector">
-                                    <label className="form-label">Quantity</label>
-                                    <div className="quantity-controls">
-                                        <button
-                                            onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                                            className="btn btn-sm btn-secondary"
-                                        >
-                                            −
-                                        </button>
-                                        <span className="quantity-display">{quantity}</span>
-                                        <button
-                                            onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
-                                            className="btn btn-sm btn-secondary"
-                                        >
-                                            +
-                                        </button>
-                                    </div>
+                                <div className="quantity-selector" style={{ marginBottom: '1rem' }}>
+                                    <label className="form-label">Quantity: </label>
+                                    <select 
+                                        value={quantity} 
+                                        onChange={(e) => setQuantity(parseInt(e.target.value))}
+                                        className="form-select"
+                                        style={{ width: 'auto', borderRadius: '8px', padding: '0.2rem 0.5rem' }}
+                                    >
+                                        {[...Array(Math.min(10, product.stock)).keys()].map(i => (
+                                            <option key={i+1} value={i+1}>{i+1}</option>
+                                        ))}
+                                    </select>
                                 </div>
 
                                 <button
                                     onClick={handleAddToCart}
-                                    className="btn btn-primary btn-lg w-full"
+                                    className="btn btn-primary w-full"
+                                    style={{ borderRadius: '20px', marginBottom: '0.5rem', padding: '0.6rem' }}
                                 >
                                     Add to Cart
+                                </button>
+                                <button
+                                    className="btn btn-secondary w-full"
+                                    style={{ backgroundColor: '#ffa41c', borderColor: '#f3a847', borderRadius: '20px', padding: '0.6rem' }}
+                                >
+                                    Buy Now
                                 </button>
                             </div>
                         )}

@@ -11,7 +11,8 @@ export default function AdminProducts() {
         name: '',
         description: '',
         price: '',
-        stock: ''
+        stock: '',
+        imageUrl: ''
     });
 
     useEffect(() => {
@@ -45,7 +46,7 @@ export default function AdminProducts() {
                 alert('Product created successfully!');
             }
 
-            setFormData({ name: '', description: '', price: '', stock: '' });
+            setFormData({ name: '', description: '', price: '', stock: '', imageUrl: '' });
             setEditing(null);
             fetchProducts();
         } catch (err) {
@@ -59,7 +60,8 @@ export default function AdminProducts() {
             name: product.name,
             description: product.description || '',
             price: product.price,
-            stock: product.stock
+            stock: product.stock,
+            imageUrl: product.imageUrl || ''
         });
     };
 
@@ -79,7 +81,7 @@ export default function AdminProducts() {
 
     const handleCancel = () => {
         setEditing(null);
-        setFormData({ name: '', description: '', price: '', stock: '' });
+        setFormData({ name: '', description: '', price: '', stock: '', imageUrl: '' });
     };
 
     if (loading) {
@@ -103,72 +105,85 @@ export default function AdminProducts() {
                 </div>
 
                 <div className="admin-layout">
-                    <div className="admin-form card">
-                        <h2>{editing ? 'Edit Product' : 'Add New Product'}</h2>
+                    <div className="admin-sidebar">
+                        <div className="admin-form card">
+                            <h2>{editing ? 'Edit Product' : 'Add New Product'}</h2>
 
-                        <form onSubmit={handleSubmit}>
-                            <div className="form-group">
-                                <label className="form-label">Product Name</label>
-                                <input
-                                    type="text"
-                                    className="form-input"
-                                    value={formData.name}
-                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                    placeholder="Enter product name"
-                                    required
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label className="form-label">Description</label>
-                                <textarea
-                                    className="form-textarea"
-                                    value={formData.description}
-                                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                                    placeholder="Enter product description"
-                                />
-                            </div>
-
-                            <div className="form-row">
+                            <form onSubmit={handleSubmit}>
                                 <div className="form-group">
-                                    <label className="form-label">Price (₹)</label>
+                                    <label className="form-label">Product Name</label>
                                     <input
-                                        type="number"
-                                        step="0.01"
-                                        min="0"
+                                        type="text"
                                         className="form-input"
-                                        value={formData.price}
-                                        onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                                        placeholder="Enter price in INR"
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                        placeholder="Enter product name"
                                         required
                                     />
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="form-label">Stock</label>
+                                    <label className="form-label">Product Image URL</label>
                                     <input
-                                        type="number"
-                                        min="0"
+                                        type="url"
                                         className="form-input"
-                                        value={formData.stock}
-                                        onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
-                                        placeholder="Enter stock quantity"
-                                        required
+                                        value={formData.imageUrl}
+                                        onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
+                                        placeholder="Paste image URL here"
                                     />
                                 </div>
-                            </div>
 
-                            <div className="form-actions">
-                                <button type="submit" className="btn btn-primary">
-                                    {editing ? 'Update Product' : 'Create Product'}
-                                </button>
-                                {editing && (
-                                    <button type="button" onClick={handleCancel} className="btn btn-secondary">
-                                        Cancel
+                                <div className="form-group">
+                                    <label className="form-label">Description</label>
+                                    <textarea
+                                        className="form-textarea"
+                                        value={formData.description}
+                                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                                        placeholder="Enter product description"
+                                    />
+                                </div>
+
+                                <div className="form-row" style={{ display: 'flex', gap: '10px' }}>
+                                    <div className="form-group" style={{ flex: 1 }}>
+                                        <label className="form-label">Price (₹)</label>
+                                        <input
+                                            type="number"
+                                            step="0.01"
+                                            min="0"
+                                            className="form-input"
+                                            value={formData.price}
+                                            onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                                            placeholder="Price"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div className="form-group" style={{ flex: 1 }}>
+                                        <label className="form-label">Stock</label>
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            className="form-input"
+                                            value={formData.stock}
+                                            onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
+                                            placeholder="Stock"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="form-actions">
+                                    <button type="submit" className="btn btn-primary">
+                                        {editing ? 'Update Product' : 'Create Product'}
                                     </button>
-                                )}
-                            </div>
-                        </form>
+                                    {editing && (
+                                        <button type="button" onClick={handleCancel} className="btn btn-secondary">
+                                            Cancel
+                                        </button>
+                                    )}
+                                </div>
+                            </form>
+                        </div>
                     </div>
 
                     <div className="admin-list">
@@ -181,20 +196,29 @@ export default function AdminProducts() {
                         ) : (
                             <div className="products-table">
                                 {products.map((product) => (
-                                    <div key={product.id} className="product-row card">
-                                        <div className="product-details">
+                                    <div key={product.id} className="product-row card" style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                                        {product.imageUrl && (
+                                            <div className="product-thumbnail" style={{ width: '80px', height: '80px', flexShrink: 0 }}>
+                                                <img 
+                                                    src={product.imageUrl} 
+                                                    alt={product.name} 
+                                                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                                />
+                                            </div>
+                                        )}
+                                        <div className="product-details" style={{ flex: 1 }}>
                                             <h3>{product.name}</h3>
-                                            <p className="text-muted">{product.description}</p>
+                                            <p className="text-muted" style={{ fontSize: '13px', margin: '5px 0' }}>{product.description}</p>
                                             <div className="product-meta">
-                                                <span className="meta-item">Price: ₹{product.price}</span>
-                                                <span className="meta-item">Stock: {product.stock}</span>
+                                                <span className="meta-item">Price: <b>₹{product.price}</b></span>
+                                                <span className="meta-item" style={{ marginLeft: '15px' }}>Stock: {product.stock}</span>
                                             </div>
                                         </div>
                                         <div className="product-actions">
                                             <button onClick={() => handleEdit(product)} className="btn btn-sm btn-secondary">
                                                 Edit
                                             </button>
-                                            <button onClick={() => handleDelete(product.id)} className="btn btn-sm btn-error">
+                                            <button onClick={() => handleDelete(product.id)} className="btn btn-sm btn-error" style={{ marginLeft: '5px' }}>
                                                 Delete
                                             </button>
                                         </div>

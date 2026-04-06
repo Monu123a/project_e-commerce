@@ -1,124 +1,16 @@
+/* Product Detail styles have been updated for Amazon theme. 
+   Most layout is now handled in the component for better reactivity and Amazon-style grid control. */
+
 .product-detail-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-2xl);
-    align-items: start;
-}
-
-.product-detail-image {
-    position: sticky;
-    top: 100px;
-    padding: var(--space-2xl);
-}
-
-.product-image-large {
-    width: 100%;
-    padding-top: 100%;
-    position: relative;
-    background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-}
-
-.product-icon-large {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8rem;
-    opacity: 0.3;
-}
-
-.product-detail-info {
-    padding: var(--space-2xl);
+    margin-top: var(--space-md);
 }
 
 .product-detail-name {
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--space-lg);
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.product-detail-price {
-    display: flex;
-    align-items: baseline;
-    gap: var(--space-md);
-    margin-bottom: var(--space-2xl);
-    padding-bottom: var(--space-lg);
-    border-bottom: 1px solid var(--glass-border);
-}
-
-.product-detail-price .price-label {
-    font-size: var(--font-size-base);
-    color: var(--color-text-muted);
-}
-
-.product-detail-price .price-value {
-    font-size: var(--font-size-4xl);
-    font-weight: 700;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.product-detail-description,
-.product-detail-stock {
-    margin-bottom: var(--space-xl);
-}
-
-.product-detail-description h3,
-.product-detail-stock h3 {
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--space-sm);
-    color: var(--color-text-primary);
-}
-
-.product-detail-description p {
-    color: var(--color-text-secondary);
-    line-height: 1.8;
-}
-
-.product-detail-actions {
-    margin-top: var(--space-2xl);
-    padding-top: var(--space-xl);
-    border-top: 1px solid var(--glass-border);
-}
-
-.quantity-selector {
-    margin-bottom: var(--space-lg);
-}
-
-.quantity-selector .form-label {
-    margin-bottom: var(--space-sm);
-}
-
-.quantity-controls {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-md);
-    background: var(--color-bg-tertiary);
-    padding: var(--space-sm);
-    border-radius: var(--radius-md);
-}
-
-.quantity-display {
-    min-width: 60px;
-    text-align: center;
-    font-weight: 600;
-    font-size: var(--font-size-lg);
-    color: var(--color-text-primary);
+    color: var(--color-text-primary) !important;
 }
 
 @media (max-width: 1024px) {
     .product-detail-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .product-detail-image {
-        position: static;
+        grid-template-columns: 1fr !important;
     }
 }

@@ -72,8 +72,8 @@ export default function Home() {
         <div className="page">
             <div className="container">
                 <div className="page-header">
-                    <h1>Premium Products</h1>
-                    <p className="text-muted">Discover our curated collection of tech essentials</p>
+                    <h1>AmazeStore Best Sellers</h1>
+                    <p className="text-muted">Our most popular products based on sales. Updated hourly.</p>
                 </div>
 
                 {products.length === 0 ? (

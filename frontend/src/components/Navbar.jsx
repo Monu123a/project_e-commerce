@@ -21,44 +21,56 @@ export default function Navbar({ cartCount = 0 }) {
             <div className="container">
                 <div className="navbar-content">
                     <Link to="/" className="navbar-brand">
-                        <span className="brand-icon">⚡</span>
-                        <span className="brand-text">TechStore</span>
+                        <span className="brand-icon">🛒</span>
+                        <span className="brand-text">AmazeStore</span>
                     </Link>
 
                     <div className="navbar-links">
-                        <Link to="/" className="nav-link">Products</Link>
+                        <Link to="/" className="nav-link">
+                            <span className="user-name">Hello,</span>
+                            <b>Explore</b>
+                        </Link>
 
                         {user ? (
                             <>
-                                <Link to="/cart" className="nav-link cart-link">
-                                    Cart
-                                    {cartCount > 0 && (
-                                        <span className="cart-badge">{cartCount}</span>
-                                    )}
+                                <div className="nav-link">
+                                    <span className="user-name">Hello, {user.name.split(' ')[0]}</span>
+                                    <b>Account & Lists</b>
+                                </div>
+                                
+                                <Link to="/orders" className="nav-link">
+                                    <span className="user-name">Returns</span>
+                                    <b>& Orders</b>
                                 </Link>
-                                <Link to="/orders" className="nav-link">Orders</Link>
 
                                 {isAdmin() && (
                                     <>
                                         <Link to="/admin/products" className="nav-link admin-link">
-                                            Admin Products
+                                            Admin
+                                            <b>Products</b>
                                         </Link>
                                         <Link to="/admin/orders" className="nav-link admin-link">
-                                            Admin Orders
+                                            Admin
+                                            <b>Orders</b>
                                         </Link>
                                     </>
                                 )}
 
-                                <div className="user-menu">
-                                    <span className="user-name">{user.name}</span>
-                                    <button onClick={handleLogout} className="btn btn-sm btn-secondary">
-                                        Logout
-                                    </button>
-                                </div>
+                                <Link to="/cart" className="nav-link cart-link">
+                                    <span className="cart-badge">{cartCount}</span>
+                                    <b>Cart</b>
+                                </Link>
+
+                                <button onClick={handleLogout} className="btn btn-sm btn-secondary" style={{ marginLeft: '10px' }}>
+                                    Sign Out
+                                </button>
                             </>
                         ) : (
                             <>
-                                <Link to="/login" className="btn btn-sm btn-secondary">Login</Link>
+                                <Link to="/login" className="nav-link">
+                                    <span className="user-name">Hello, sign in</span>
+                                    <b>Account & Lists</b>
+                                </Link>
                                 <Link to="/register" className="btn btn-sm btn-primary">Sign Up</Link>
                             </>
                         )}
