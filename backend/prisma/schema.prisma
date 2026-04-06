@@ -30,6 +30,7 @@ model Product {
   description String?
   price       Float
   stock       Int      @default(0)
+  imageUrl    String?  // Image URL for the product
   createdAt   DateTime @default(now())
   
   cartItems  CartItem[]

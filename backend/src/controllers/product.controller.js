@@ -42,14 +42,15 @@ export const createProduct = async (req, res) => {
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { name, description, price, stock } = req.body;
+        const { name, description, price, stock, imageUrl } = req.body;
 
         const product = await prisma.product.create({
             data: {
                 name,
                 description,
-                price: parseFloat(price), // String ko number mein convert karna padta hai
-                stock: parseInt(stock)
+                price: parseFloat(price),
+                stock: parseInt(stock),
+                imageUrl
             }
         });
 
@@ -72,7 +73,7 @@ export const updateProduct = async (req, res) => {
         }
 
         const { id } = req.params;
-        const { name, description, price, stock } = req.body;
+        const { name, description, price, stock, imageUrl } = req.body;
 
         const product = await prisma.product.update({
             where: { id: parseInt(id) },
@@ -80,7 +81,8 @@ export const updateProduct = async (req, res) => {
                 name,
                 description,
                 price: parseFloat(price),
-                stock: parseInt(stock)
+                stock: parseInt(stock),
+                imageUrl
             }
         });
 
