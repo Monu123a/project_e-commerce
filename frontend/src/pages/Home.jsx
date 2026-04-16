@@ -8,16 +8,26 @@ export default function Home() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchProducts();
-    }, []);
+        fetchProducts(page);
+    }, [page]);
 
-    const fetchProducts = async () => {
+    const fetchProducts = async (currentPage) => {
+        setLoading(true);
         try {
-            const response = await axios.get('/api/products');
-            setProducts(response.data);
+            const response = await axios.get(`/api/products?page=${currentPage}&limit=12`);
+            if (response.data.products) {
+                setProducts(response.data.products);
+                setTotalPages(response.data.pagination.totalPages);
+            } else {
+                // Fallback in case old response structure
+                setProducts(response.data);
+                setTotalPages(1);
+            }
         } catch (err) {
             setError('Failed to load products');
             console.error(err);
@@ -90,6 +100,28 @@ export default function Home() {
                                 onAddToCart={handleAddToCart}
                             />
                         ))}
+                    </div>
+                )}
+
+                {totalPages > 1 && (
+                    <div className="pagination" style={{ display: 'flex', justifyContent: 'center', marginTop: '30px', gap: '10px' }}>
+                        <button 
+                            className="btn btn-secondary" 
+                            disabled={page === 1} 
+                            onClick={() => setPage(page - 1)}
+                        >
+                            Previous
+                        </button>
+                        <span style={{ display: 'flex', alignItems: 'center' }}>
+                            Page {page} of {totalPages}
+                        </span>
+                        <button 
+                            className="btn btn-secondary" 
+                            disabled={page === totalPages} 
+                            onClick={() => setPage(page + 1)}
+                        >
+                            Next
+                        </button>
                     </div>
                 )}
             </div>

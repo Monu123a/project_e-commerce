@@ -63,6 +63,7 @@ model Orders {
   @@map("Orders") // Force map to "Orders" table name if needed, but model name chang suffices usually
 }
 
+
 model OrderItem {
   id        Int   @id @default(autoincrement())
   orderId   Int

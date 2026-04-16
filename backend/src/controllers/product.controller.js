@@ -1,13 +1,30 @@
 import { validationResult } from 'express-validator';
 import prisma from '../config/db.js';
 
-// Saare products dekhne ke liye
+// Saare products dekhne ke liye (with pagination)
 export const getAllProducts = async (req, res) => {
     try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const skip = (page - 1) * limit;
+
+        const total = await prisma.product.count();
+
         const products = await prisma.product.findMany({
+            skip,
+            take: limit,
             orderBy: { createdAt: 'desc' }
         });
-        res.json(products);
+
+        res.json({
+            products,
+            pagination: {
+                total,
+                page,
+                limit,
+                totalPages: Math.ceil(total / limit)
+            }
+        });
     } catch (error) {
         console.error('Get products error:', error);
         res.status(500).json({ error: 'Failed to fetch products' });
