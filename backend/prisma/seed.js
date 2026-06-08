@@ -49,36 +49,90 @@ async function main() {
 
 
     const productData = [
-        { name: 'Wireless Headphones Pro', description: 'Premium noise-cancelling wireless headphones with 30-hour battery life', price: 12499, stock: 50, imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80' },
-        { name: 'Smart Watch Series X', description: 'Fitness tracking smartwatch with heart rate monitor and GPS', price: 24999, stock: 30, imageUrl: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500&q=80' },
-        { name: 'Ergo Laptop Stand', description: 'Ergonomic aluminum laptop stand with adjustable height', price: 4199, stock: 100, imageUrl: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&q=80' },
-        { name: '7-in-1 USB-C Hub', description: '7-in-1 USB-C hub with HDMI, USB 3.0, and SD card reader', price: 3299, stock: 75, imageUrl: 'https://images.unsplash.com/photo-1587826315515-b77da201244e?w=500&q=80' },
-        { name: 'RGB Mechanical Keyboard', description: 'RGB backlit mechanical keyboard with blue switches', price: 10799, stock: 40, imageUrl: 'https://images.unsplash.com/photo-1595225476474-87563907a212?w=500&q=80' },
-        { name: 'Ergonomic Wireless Mouse', description: 'Ergonomic wireless mouse with precision tracking', price: 4999, stock: 80, imageUrl: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&q=80' },
-        { name: '1080p HD Webcam', description: '1080p HD webcam with built-in microphone', price: 6699, stock: 60, imageUrl: 'https://images.unsplash.com/photo-1584697964190-7c83f9828a2a?w=500&q=80' },
-        { name: 'Shockproof Phone Case', description: 'Protective phone case with shock absorption', price: 2099, stock: 200, imageUrl: 'https://images.unsplash.com/photo-1606293926075-69a00dbfde81?w=500&q=80' },
-        { name: '20000mAh Power Bank', description: '20000mAh portable power bank with fast charging', price: 3749, stock: 90, imageUrl: 'https://images.unsplash.com/photo-1609091839311-66c5a08bd2f7?w=500&q=80' },
-        { name: 'Waterproof Bluetooth Speaker', description: 'Waterproof Bluetooth speaker with 12-hour battery', price: 7499, stock: 55, imageUrl: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&q=80' },
-        { name: 'Gaming Monitor 144Hz', description: '27-inch 144Hz gaming monitor with 1ms response time', price: 35000, stock: 25, imageUrl: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&q=80' },
-        { name: 'Wireless Earbuds', description: 'Compact wireless earbuds with touch controls and case', price: 8999, stock: 120, imageUrl: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&q=80' },
-        { name: 'Mechanical Gaming Mouse', description: 'Wired gaming mouse with customizable RGB and weights', price: 6599, stock: 65, imageUrl: 'https://images.unsplash.com/photo-1598462002360-1d89775abed8?w=500&q=80' },
-        { name: 'Streaming Microphone', description: 'USB condenser microphone for streaming and podcasting', price: 12000, stock: 45, imageUrl: 'https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=500&q=80' },
-        { name: 'Desk Pad Large', description: 'Extra large desk pad for keyboard and mouse', price: 1599, stock: 150, imageUrl: 'https://images.unsplash.com/photo-1616423640778-28d1b53229bd?w=500&q=80' },
-        { name: 'Tablet Pro 11-inch', description: 'High-performance tablet with stylus support', price: 65000, stock: 20, imageUrl: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&q=80' },
-        { name: 'E-Reader Paperwhite', description: 'Glare-free screen e-reader with weeks of battery', price: 12999, stock: 85, imageUrl: 'https://images.unsplash.com/photo-1592496001020-d31bd830651f?w=500&q=80' },
-        { name: 'Action Camera 4K', description: 'Waterproof 4K action camera with stabilization', price: 29999, stock: 35, imageUrl: 'https://images.unsplash.com/photo-1502920514313-52581002a659?w=500&q=80' },
-        { name: 'Drone Mini', description: 'Lightweight foldable drone with 1080p camera', price: 45000, stock: 15, imageUrl: 'https://images.unsplash.com/photo-1579829366248-204fe8413f31?w=500&q=80' },
-        { name: 'VR Headset', description: 'Standalone virtual reality headset', price: 35000, stock: 25, imageUrl: 'https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=500&q=80' },
-        { name: 'Smart Home Hub', description: 'Hub to connect and control smart home devices', price: 8500, stock: 50, imageUrl: 'https://images.unsplash.com/photo-1558089687-f282ffcbc126?w=500&q=80' },
-        { name: 'Smart Light Bulb', description: 'Color-changing Wi-Fi smart light bulb', price: 1200, stock: 200, imageUrl: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=500&q=80' },
-        { name: 'Fitness Band', description: 'Slim fitness tracker with sleep monitoring', price: 3500, stock: 110, imageUrl: 'https://images.unsplash.com/photo-1575311373937-040b8e1fd5b0?w=500&q=80' },
-        { name: 'Portable SSD 1TB', description: 'Fast USB-C portable solid state drive', price: 12000, stock: 60, imageUrl: 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=500&q=80' },
-        { name: 'Wi-Fi 6 Router', description: 'High-speed dual-band Wi-Fi 6 router', price: 9000, stock: 40, imageUrl: 'https://images.unsplash.com/photo-1544006659-f0b21884ce1d?w=500&q=80' },
-        { name: 'Noise-Cancelling Earbuds', description: 'Premium active noise-cancelling wireless earbuds', price: 18000, stock: 30, imageUrl: 'https://images.unsplash.com/photo-1605464315542-a0ce6a877be1?w=500&q=80' },
-        { name: 'Smart Thermostat', description: 'Energy-saving programmable smart thermostat', price: 21000, stock: 25, imageUrl: 'https://images.unsplash.com/photo-1560940384-ad4b1b3dc0ce?w=500&q=80' },
-        { name: 'Video Doorbell', description: '1080p HD video doorbell with motion detection', price: 15000, stock: 40, imageUrl: 'https://images.unsplash.com/photo-1558002038-16e05c8d62dc?w=500&q=80' },
-        { name: 'Cordless Vacuum', description: 'Lightweight cordless stick vacuum cleaner', price: 25000, stock: 20, imageUrl: 'https://images.unsplash.com/photo-1558317374-067fb5f30001?w=500&q=80' },
-        { name: 'Electric Toothbrush', description: 'Sonic electric toothbrush with timer', price: 4500, stock: 80, imageUrl: 'https://images.unsplash.com/photo-1609114346985-110f6063e52f?w=500&q=80' }
+        {
+            name: 'Premium Wireless Noise-Cancelling Headphones - 40hr Battery, Hi-Res Audio',
+            description: 'Experience premium sound quality with industry-leading noise cancellation. Features 40-hour battery life, Hi-Res Audio support, multipoint connection, and ultra-comfortable design for all-day wear. Touch sensor controls, speak-to-chat, and adaptive sound control.',
+            price: 24999,
+            stock: 25,
+            imageUrl: '/images/products/headphones.png'
+        },
+        {
+            name: 'Ultra Smartphone 5G - 108MP Camera, 6.7" AMOLED, 5000mAh Battery',
+            description: 'Flagship smartphone with 108MP quad camera system, 6.7-inch Dynamic AMOLED 2X display, 120Hz refresh rate, Snapdragon 8 Gen 2 processor, 5000mAh battery with 65W fast charging, and 256GB storage. IP68 water resistance.',
+            price: 69999,
+            stock: 15,
+            imageUrl: '/images/products/smartphone.png'
+        },
+        {
+            name: 'ProBook Ultra Laptop - M2 Chip, 16GB RAM, 512GB SSD, 14" Retina Display',
+            description: 'Powerhouse laptop featuring the latest M2 chip, 16GB unified memory, 512GB SSD storage, stunning 14-inch Liquid Retina XDR display. Up to 18 hours of battery life. Perfect for professionals, creators, and developers.',
+            price: 149999,
+            stock: 8,
+            imageUrl: '/images/products/laptop.png'
+        },
+        {
+            name: 'SmartWatch Ultra - GPS, Heart Rate, Blood Oxygen, 7-Day Battery',
+            description: 'Advanced smartwatch with always-on Retina display, blood oxygen monitoring, ECG app, heart rate tracking, sleep analysis, GPS, and water resistance to 100m. 7-day battery life with fast charging. 100+ workout modes.',
+            price: 34999,
+            stock: 32,
+            imageUrl: '/images/products/smartwatch.png'
+        },
+        {
+            name: 'Mirrorless Digital Camera - 24.2MP, 4K Video, Weather-Sealed Body',
+            description: 'Professional mirrorless camera with 24.2MP full-frame sensor, real-time Eye AF, 4K HDR video recording, 5-axis image stabilization, weather-sealed body. Includes 24-70mm f/2.8 GM II lens. Perfect for photography and videography professionals.',
+            price: 189999,
+            stock: 5,
+            imageUrl: '/images/products/camera.png'
+        },
+        {
+            name: 'Portable Bluetooth Speaker - 360° Sound, 24hr Playtime, Waterproof',
+            description: 'Premium portable Bluetooth speaker delivering immersive 360-degree sound. Features 24-hour battery life, IP67 waterproof and dustproof rating, built-in microphone for calls, and wireless stereo pairing. PartyBoost compatible.',
+            price: 8999,
+            stock: 50,
+            imageUrl: '/images/products/speaker.png'
+        },
+        {
+            name: 'Pro Tablet 12.9" - M2 Chip, 256GB, Liquid Retina XDR, Wi-Fi + 5G',
+            description: 'The ultimate iPad experience with the powerful M2 chip, brilliant 12.9-inch Liquid Retina XDR display, ProMotion technology, and Thunderbolt connectivity. Features 12MP Ultra Wide front camera with Center Stage. Apple Pencil hover support.',
+            price: 112999,
+            stock: 12,
+            imageUrl: '/images/products/tablet.png'
+        },
+        {
+            name: 'True Wireless Earbuds Pro - ANC, 30hr Battery, Spatial Audio',
+            description: 'Premium true wireless earbuds with Active Noise Cancellation, Transparency mode, Spatial Audio with dynamic head tracking. 30-hour total battery life with MagSafe charging case. IPX4 water and sweat resistant. Touch controls.',
+            price: 19999,
+            stock: 40,
+            imageUrl: '/images/products/earbuds.png'
+        },
+        {
+            name: 'Mechanical Gaming Keyboard - RGB, Hot-Swappable, Wireless/Wired',
+            description: 'Professional mechanical gaming keyboard with hot-swappable switches, per-key RGB backlighting, tri-mode connectivity (Bluetooth, 2.4GHz wireless, USB-C wired). Aircraft-grade aluminum frame, PBT keycaps, N-key rollover.',
+            price: 12999,
+            stock: 22,
+            imageUrl: '/images/products/keyboard.png'
+        },
+        {
+            name: 'Wireless Gaming Mouse - 25K DPI, 70hr Battery, Ultra-Lightweight',
+            description: 'High-performance wireless gaming mouse with 25,600 DPI HERO 25K sensor, LIGHTSPEED wireless technology, 70-hour battery life, ultra-lightweight 63g design. 5 programmable buttons, onboard memory, RGB lighting.',
+            price: 6999,
+            stock: 35,
+            imageUrl: '/images/products/headphones.png'
+        },
+        {
+            name: '20000mAh Power Bank - 65W Fast Charging, USB-C, Laptop Compatible',
+            description: 'High-capacity 20000mAh portable charger with 65W USB-C Power Delivery for laptops, tablets, and phones. Features smart temperature control, LED display, and simultaneous 3-device charging. TSA approved for flights.',
+            price: 4999,
+            stock: 60,
+            imageUrl: '/images/products/speaker.png'
+        },
+        {
+            name: '4K Ultra-Wide Curved Monitor 34" - 144Hz, HDR 400, USB-C Hub',
+            description: 'Immersive 34-inch ultra-wide QHD curved monitor with 144Hz refresh rate, 1ms response time, HDR 400, 98% DCI-P3 color gamut. Built-in USB-C hub with 90W power delivery. Perfect for gaming and creative work.',
+            price: 54999,
+            stock: 7,
+            imageUrl: '/images/products/laptop.png'
+        }
     ];
 
     const products = await Promise.all(

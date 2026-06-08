@@ -1,0 +1,595 @@
+/* ============================================================
+   HOME PAGE – Premium Amazon-Style Styling
+   ============================================================ */
+
+/* ---------- HERO BANNER CAROUSEL ---------- */
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+    margin-bottom: 0;
+    background: var(--navbar-bg);
+}
+
+.hero-carousel .carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+.hero-slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 3rem 4rem;
+}
+
+.hero-slide-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 700px;
+    animation: heroFadeIn 0.7s ease-out;
+}
+
+@keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-slide-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0.35rem 1.1rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.hero-slide-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+
+.hero-slide-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.hero-slide-cta {
+    display: inline-block;
+    background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+    color: #111;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.7rem 2.2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid #a88734;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.hero-slide-cta:hover {
+    background: linear-gradient(to bottom, #f5d78e, #eeb933);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    text-decoration: none;
+    color: #111;
+}
+
+/* Carousel arrows */
+.carousel-arrow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    transition: all var(--transition-base);
+    user-select: none;
+}
+
+.hero-carousel:hover .carousel-arrow {
+    opacity: 0.7;
+    background: rgba(0,0,0,0.05);
+}
+
+.carousel-arrow:hover {
+    opacity: 1 !important;
+    background: rgba(0,0,0,0.15) !important;
+}
+
+.carousel-arrow--prev {
+    left: 0;
+}
+
+.carousel-arrow--next {
+    right: 0;
+}
+
+/* Carousel dots */
+.carousel-dots {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    border: 2px solid rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    padding: 0;
+}
+
+.carousel-dot.active {
+    background: #fff;
+    border-color: #fff;
+    transform: scale(1.2);
+    box-shadow: 0 0 8px rgba(255,255,255,0.4);
+}
+
+/* Hero gradient fade at bottom */
+.hero-carousel::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--color-bg-secondary));
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* ---------- SECTION STYLING ---------- */
+.home-section {
+    padding: 0 0 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.home-section--overlap {
+    margin-top: -40px;
+    position: relative;
+    z-index: 6;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0 var(--space-sm);
+}
+
+.section-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+    position: relative;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--color-primary-dark);
+    border-radius: 2px;
+}
+
+.section-link {
+    font-size: 0.85rem;
+    color: #007185;
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color var(--transition-fast);
+}
+
+.section-link:hover {
+    color: #c7511f;
+    text-decoration: underline;
+}
+
+/* ---------- CATEGORY CARDS ROW ---------- */
+.category-scroll-row {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0.5rem var(--space-sm) 1rem;
+}
+
+.category-scroll-row::-webkit-scrollbar {
+    display: none;
+}
+
+.category-card {
+    flex: 0 0 150px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.2rem 1rem;
+    background: var(--color-bg-primary);
+    border: var(--border-light);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    text-decoration: none;
+    color: var(--color-text-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary-dark);
+    text-decoration: none;
+    color: var(--color-text-primary);
+}
+
+.category-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    background: var(--color-bg-tertiary);
+    transition: all var(--transition-base);
+}
+
+.category-card:hover .category-icon {
+    transform: scale(1.12);
+    background: var(--color-primary-light);
+}
+
+.category-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* ---------- DEALS SECTION ---------- */
+.deals-banner {
+    background: var(--color-bg-primary);
+    border: var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.deals-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.deals-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.deals-fire {
+    color: #cc0c39;
+}
+
+.deals-timer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.deals-timer-label {
+    color: var(--color-text-muted);
+}
+
+.timer-block {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--navbar-bg);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    min-width: 34px;
+    height: 32px;
+    padding: 0 6px;
+    border-radius: var(--radius-md);
+    font-variant-numeric: tabular-nums;
+}
+
+.timer-colon {
+    font-weight: 700;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+}
+
+.deals-scroll-row {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.5rem;
+}
+
+.deals-scroll-row::-webkit-scrollbar {
+    display: none;
+}
+
+.deals-scroll-row .product-card {
+    flex: 0 0 250px;
+    scroll-snap-align: start;
+    min-width: 250px;
+}
+
+/* Deal badge overlay */
+.deal-card-wrapper {
+    flex: 0 0 250px;
+    scroll-snap-align: start;
+    position: relative;
+}
+
+.deal-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #cc0c39;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-sm);
+    z-index: 3;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ---------- PRODUCT GRID – Best Sellers ---------- */
+.bestsellers-section {
+    background: var(--color-bg-primary);
+    border: var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.bestsellers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 1rem;
+}
+
+/* ---------- TRENDING SECTION ---------- */
+.trending-section {
+    background: var(--color-bg-primary);
+    border: var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.trending-scroll-row {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.5rem;
+}
+
+.trending-scroll-row::-webkit-scrollbar {
+    display: none;
+}
+
+.trending-scroll-row .product-card,
+.trending-card-wrapper {
+    flex: 0 0 250px;
+    scroll-snap-align: start;
+}
+
+.trending-rank {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: var(--navbar-bg);
+    color: var(--color-primary);
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-sm);
+    z-index: 3;
+    letter-spacing: 0.5px;
+}
+
+/* ---------- EMPTY / NO RESULTS ---------- */
+.home-empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--color-text-muted);
+}
+
+.home-empty-state .empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+/* ---------- SEARCH RESULTS INFO ---------- */
+.search-results-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: #fef8f2;
+    border: 1px solid #f0c14b;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.search-results-info .clear-search {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: #007185;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.search-results-info .clear-search:hover {
+    background: rgba(0,0,0,0.05);
+    color: #c7511f;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1024px) {
+    .hero-carousel {
+        height: 340px;
+    }
+    .hero-slide-title {
+        font-size: 2.2rem;
+    }
+    .bestsellers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-carousel {
+        height: 280px;
+    }
+    .hero-slide {
+        padding: 2rem 1.5rem;
+    }
+    .hero-slide-title {
+        font-size: 1.65rem;
+    }
+    .hero-slide-subtitle {
+        font-size: 0.95rem;
+    }
+    .hero-slide-cta {
+        padding: 0.55rem 1.5rem;
+        font-size: 0.85rem;
+    }
+    .carousel-arrow {
+        width: 40px;
+        font-size: 1.8rem;
+    }
+    .category-card {
+        flex: 0 0 120px;
+        padding: 0.9rem 0.6rem;
+    }
+    .category-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 1.4rem;
+    }
+    .deals-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .bestsellers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+    .deal-card-wrapper,
+    .trending-card-wrapper {
+        flex: 0 0 200px;
+    }
+    .section-header h2 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-carousel {
+        height: 240px;
+    }
+    .hero-slide-title {
+        font-size: 1.35rem;
+    }
+    .hero-slide-badge {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.75rem;
+    }
+    .category-card {
+        flex: 0 0 100px;
+        padding: 0.75rem 0.5rem;
+    }
+    .bestsellers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.75rem;
+    }
+}
+
+/* ---------- UTILITY / ANIMATION ---------- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.5s ease-out both;
+}

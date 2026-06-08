@@ -1,16 +1,408 @@
-/* Product Detail styles have been updated for Amazon theme. 
-   Most layout is now handled in the component for better reactivity and Amazon-style grid control. */
+/* Product Detail - Amazon Style */
 
-.product-detail-layout {
-    margin-top: var(--space-md);
+.pd-breadcrumb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
 }
 
-.product-detail-name {
-    color: var(--color-text-primary) !important;
+.pd-back-link {
+    background: none;
+    border: none;
+    color: #007185;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: inherit;
+    padding: 0;
 }
 
+.pd-back-link:hover {
+    color: #c7511f;
+    text-decoration: underline;
+}
+
+.pd-category-crumb {
+    color: #565959;
+    font-size: 0.85rem;
+}
+
+/* Layout */
+.pd-layout {
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr) 1.5fr minmax(220px, 1fr);
+    gap: 2rem;
+    align-items: start;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #d5d9d9;
+}
+
+/* Image Section */
+.pd-image-section {
+    position: sticky;
+    top: 140px;
+}
+
+.pd-main-image-wrap {
+    background: #fff;
+    padding: 1rem;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    transition: transform 0.3s ease;
+}
+
+.pd-main-image-wrap:hover {
+    transform: scale(1.02);
+}
+
+.pd-main-image {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.pd-image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f7f7f7;
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+
+/* Details Section */
+.pd-details-section {
+    padding: 0 1rem;
+}
+
+.pd-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #0f1111;
+    margin-bottom: 0.5rem;
+}
+
+.pd-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.pd-stars {
+    color: #ffa41c;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.pd-star-half {
+    background: linear-gradient(90deg, #ffa41c 50%, #d5d9d9 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.pd-rating-count {
+    color: #007185;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.pd-rating-count:hover {
+    color: #c7511f;
+    text-decoration: underline;
+}
+
+.pd-divider {
+    color: #d5d9d9;
+}
+
+.pd-search-page {
+    color: #007185;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.pd-separator {
+    border-bottom: 1px solid #e6e6e6;
+    margin: 1rem 0;
+}
+
+/* Price Section */
+.pd-price-section {
+    margin-bottom: 0.5rem;
+}
+
+.pd-deal-badge {
+    margin-bottom: 0.5rem;
+}
+
+.pd-deal-label {
+    background: #CC0C39;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pd-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.pd-discount-pct {
+    color: #CC0C39;
+    font-size: 1.75rem;
+    font-weight: 400;
+}
+
+.pd-price {
+    color: #0f1111;
+    font-size: 1.75rem;
+    font-weight: 400;
+}
+
+.pd-rupee-symbol {
+    font-size: 0.85rem;
+    position: relative;
+    top: -0.5em;
+}
+
+.pd-mrp-row {
+    color: #565959;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.pd-mrp-strikethrough {
+    text-decoration: line-through;
+}
+
+.pd-tax-note {
+    color: #565959;
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+}
+
+.pd-fulfilled {
+    color: #565959;
+    font-size: 0.85rem;
+    margin-bottom: 0;
+}
+
+/* About */
+.pd-about {
+    margin-top: 0.5rem;
+}
+
+.pd-about-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.pd-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 0;
+}
+
+/* Buy Box */
+.pd-buy-box {
+    border: 1px solid #d5d9d9;
+    border-radius: 8px;
+    padding: 1.25rem;
+    background: #fff;
+}
+
+.pd-buy-price {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #0f1111;
+    margin-bottom: 0.75rem;
+}
+
+.pd-delivery-info {
+    font-size: 0.85rem;
+    color: #0f1111;
+    margin-bottom: 0.25rem;
+}
+
+.pd-free-delivery {
+    color: #007185;
+    font-weight: 600;
+}
+
+.pd-order-within {
+    font-size: 0.8rem;
+    color: #565959;
+    margin-bottom: 1rem;
+}
+
+.pd-order-time {
+    color: #007600;
+    font-weight: 600;
+}
+
+/* Stock */
+.pd-stock-status {
+    margin-bottom: 1rem;
+}
+
+.pd-in-stock {
+    color: #007600;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.pd-out-stock {
+    color: #B12704;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.pd-low-stock {
+    color: #B12704;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+}
+
+/* Buy Actions */
+.pd-buy-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.pd-quantity-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.pd-qty-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.pd-qty-select {
+    border-radius: 8px;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid #d5d9d9;
+    background: #f0f2f2;
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(15, 17, 17, 0.15);
+}
+
+.pd-add-cart-btn {
+    background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+    border: 1px solid #a88734;
+    border-radius: 20px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease-in-out;
+}
+
+.pd-add-cart-btn:hover {
+    background: linear-gradient(to bottom, #f5d78e, #eeb933);
+}
+
+.pd-buy-now-btn {
+    background: #ffa41c;
+    border: 1px solid #f3a847;
+    border-radius: 20px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: inherit;
+    color: #111;
+    transition: all 0.15s ease-in-out;
+}
+
+.pd-buy-now-btn:hover {
+    background: #fa8900;
+}
+
+/* Secure & Seller */
+.pd-secure {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #007185;
+    padding: 0.75rem 0;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 0.75rem;
+}
+
+.pd-secure-icon {
+    font-size: 0.9rem;
+}
+
+.pd-seller-info p {
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pd-seller-label {
+    color: #565959;
+}
+
+.pd-seller-info span:last-child {
+    color: #007185;
+}
+
+/* Responsive */
 @media (max-width: 1024px) {
-    .product-detail-layout {
-        grid-template-columns: 1fr !important;
+    .pd-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .pd-buy-box {
+        grid-column: 1 / -1;
+    }
+
+    .pd-image-section {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .pd-layout {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .pd-title {
+        font-size: 1.2rem;
+    }
+
+    .pd-main-image-wrap {
+        min-height: 250px;
     }
 }

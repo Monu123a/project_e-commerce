@@ -8,58 +8,120 @@ export default function ProductCard({ product, onAddToCart }) {
         }
     };
 
+    // Build star rating display
+    const renderStars = (rating = 0) => {
+        const fullStars = Math.floor(rating);
+        const hasHalf = rating - fullStars >= 0.5;
+        const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
+        return (
+            <span className="pc-stars" aria-label={`${rating} out of 5 stars`}>
+                {'★'.repeat(fullStars)}
+                {hasHalf && <span className="pc-star-half">★</span>}
+                {'☆'.repeat(emptyStars)}
+            </span>
+        );
+    };
+
+    // Badge colour map
+    const badgeClassMap = {
+        'Best Seller': 'pc-badge--bestseller',
+        "Amazon's Choice": 'pc-badge--choice',
+        'Limited Deal': 'pc-badge--limited',
+        'Great Deal': 'pc-badge--great',
+    };
+
+    const discountPct = product.discount || (product.originalPrice
+        ? Math.round((1 - product.price / product.originalPrice) * 100)
+        : 0);
+
+    const originalPrice = product.originalPrice || (discountPct
+        ? Math.round(product.price / (1 - discountPct / 100))
+        : null);
+
     return (
-        <div className="product-card card fade-in">
-            <Link to={`/product/${product.id}`} className="product-image-link">
-                <div className="product-image" style={{ height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '10px' }}>
+        <div className="pc-card fade-in">
+            {/* Badge */}
+            {product.badge && (
+                <span className={`pc-badge ${badgeClassMap[product.badge] || 'pc-badge--great'}`}>
+                    {product.badge}
+                </span>
+            )}
+
+            {/* Image */}
+            <Link to={`/product/${product.id}`} className="pc-image-link">
+                <div className="pc-image-container">
                     {product.imageUrl ? (
-                        <img 
-                            src={product.imageUrl} 
-                            alt={product.name} 
-                            style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                        <img
+                            src={product.imageUrl}
+                            alt={product.name}
+                            className="pc-image"
+                            loading="lazy"
                         />
                     ) : (
-                        <div className="product-image-placeholder" style={{ backgroundColor: '#f3f3f3', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <span style={{ fontSize: '4rem' }}>📦</span>
+                        <div className="pc-image-placeholder">
+                            <span className="pc-placeholder-icon">📦</span>
                         </div>
                     )}
                 </div>
             </Link>
 
-            <div className="product-info" style={{ padding: '0 10px 10px' }}>
-                <Link to={`/product/${product.id}`} style={{ color: '#007185', textDecoration: 'none' }}>
-                    <h3 className="product-name" style={{ fontSize: '1rem', marginBottom: '5px', height: '2.4em', overflow: 'hidden' }}>{product.name}</h3>
+            {/* Info */}
+            <div className="pc-info">
+                {/* Name */}
+                <Link to={`/product/${product.id}`} className="pc-name-link">
+                    <h3 className="pc-name">{product.name}</h3>
                 </Link>
-                
-                <div className="product-rating" style={{ color: '#ffa41c', marginBottom: '5px' }}>
-                    ★★★★☆ <span style={{ color: '#007185', fontSize: '0.8rem' }}> (42)</span>
+
+                {/* Rating */}
+                <div className="pc-rating">
+                    {renderStars(product.rating || 0)}
+                    <Link to={`/product/${product.id}`} className="pc-review-count">
+                        {product.reviewCount != null ? product.reviewCount.toLocaleString() : '0'}
+                    </Link>
                 </div>
 
-                <div className="product-price" style={{ marginBottom: '10px' }}>
-                    <span style={{ fontSize: '0.8rem', position: 'relative', top: '-0.3em' }}>₹</span>
-                    <span style={{ fontSize: '1.5rem', fontWeight: '700' }}>{Math.floor(product.price)}</span>
-                    <span style={{ fontSize: '0.8rem', position: 'relative', top: '-0.3em' }}>{(product.price % 1).toFixed(2).substring(1)}</span>
-                </div>
-
-                <div className="product-stock-info" style={{ fontSize: '12px', marginBottom: '10px' }}>
-                    {product.stock < 10 && product.stock > 0 && (
-                        <span style={{ color: '#B12704' }}>Only {product.stock} left in stock - order soon.</span>
+                {/* Price */}
+                <div className="pc-price-row">
+                    {discountPct > 0 && (
+                        <span className="pc-discount-badge">-{discountPct}%</span>
                     )}
+                    <span className="pc-price">
+                        <span className="pc-rupee">₹</span>
+                        <span className="pc-price-whole">{Math.floor(product.price).toLocaleString('en-IN')}</span>
+                    </span>
+                </div>
+
+                {originalPrice && originalPrice > product.price && (
+                    <div className="pc-mrp">
+                        M.R.P: <span className="pc-mrp-value">₹{Math.floor(originalPrice).toLocaleString('en-IN')}</span>
+                    </div>
+                )}
+
+                {/* Delivery */}
+                <p className="pc-delivery">
+                    <span className="pc-free">FREE delivery</span> by AmazeStore
+                </p>
+
+                {/* Stock */}
+                <div className="pc-stock">
                     {product.stock === 0 && (
-                        <span style={{ color: '#B12704', fontWeight: '700' }}>Currently unavailable.</span>
+                        <span className="pc-stock--unavailable">Currently unavailable.</span>
+                    )}
+                    {product.stock > 0 && product.stock < 10 && (
+                        <span className="pc-stock--low">Only {product.stock} left in stock – order soon.</span>
                     )}
                     {product.stock >= 10 && (
-                        <span style={{ color: '#007600' }}>In Stock</span>
+                        <span className="pc-stock--instock">In Stock</span>
                     )}
                 </div>
 
-                <div className="product-actions" style={{ marginTop: 'auto' }}>
+                {/* Add to Cart */}
+                <div className="pc-actions">
                     {onAddToCart && (
                         <button
                             onClick={handleAddToCart}
                             disabled={product.stock === 0}
-                            className="btn btn-primary w-full"
-                            style={{ borderRadius: '20px' }}
+                            className="pc-add-btn"
                         >
                             Add to Cart
                         </button>
