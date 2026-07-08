@@ -74,7 +74,7 @@ export default function Navbar({ cartCount = 0, onSearch, searchQuery = '', sear
                     >
                         <span className="amz-logo-icon">🛒</span>
                         <span className="amz-logo-text">
-                            Amaze<span className="amz-logo-highlight">Store</span>
+                            Ebay<span className="amz-logo-highlight">Store</span>
                         </span>
                     </Link>
 
